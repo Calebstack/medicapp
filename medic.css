@@ -1,0 +1,30 @@
+  :root {
+            --primary: #0d6efd;
+            --accent: #00c6a7;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+                        url('https://picsum.photos/id/1015/1920/1080') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.97) ;
+            backdrop-filter: blur(10px);
+        }
+        .section-title {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(13, 110, 253, 0.15);
+        }
