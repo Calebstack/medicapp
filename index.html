@@ -4,90 +4,253 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Olusegun Caleb">
-	<meta name="description" content="Caleb's mini project">
-    <title>Lumina Medicals | Expert Healthcare</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="bootstrap/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="medic.css">
+    <meta name="description" content="Lumina Medicals - Premier Tertiary Healthcare & Specialist Center in Lekki, Lagos, Nigeria. World-class medical services, top Nigerian specialists, and advanced diagnostics.">
+    <title>Lumina Medicals | Premium Healthcare & Medical Center</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/bootstrap/font/bootstrap-icons.css" rel="stylesheet" type="text/css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/medic.css">
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-3" href="#">
-                <span style="color: var(--primary);">LUMINA</span> MEDICALS
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo.jpg" alt="Lumina Medicals Logo" width="42" height="42" class="rounded-3 shadow-sm me-2">
+                <div>
+                    <span style="color: var(--primary);">LUMINA</span> MEDICALS
+                </div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
                     <li class="nav-item"><a class="nav-link" href="#doctors">Our Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
-                <a href="#appointment" class="btn btn-primary ms-3">Book Appointment</a>
+                <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                    <i class="bi bi-calendar-check-fill"></i> Book Appointment
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero text-center">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <h1 class="display-3 fw-bold mb-3">Expert Care.<br>Compassionate Healing.</h1>
-            <p class="lead fs-4 mb-5">Advanced medical expertise with world-class technology.</p>
-            <a href="#appointment" class="btn btn-primary btn-lg px-5 py-3 me-3">Book Appointment</a>
-            <a href="#services" class="btn btn-outline-light btn-lg px-5 py-3">Our Services</a>
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7">
+                    <div class="hero-badge mb-3">
+                        <i class="bi bi-shield-fill-check text-info"></i> MDCN & NMCN Accredited Healthcare
+                    </div>
+                    <h1 class="mb-4">Advanced Medicine.<br>Compassionate Nigerian Care.</h1>
+                    <p class="lead mb-4">Combining world-class medical innovation, state-of-the-art diagnostic technology, and Nigeria’s leading medical specialists for you and your family.</p>
+                    <div class="d-flex flex-wrap gap-3 mb-5">
+                        <button class="btn btn-primary-custom btn-lg" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                            <i class="bi bi-calendar-plus-fill"></i> Schedule Appointment
+                        </button>
+                        <a href="#doctors" class="btn btn-outline-custom btn-lg">
+                            <i class="bi bi-people-fill"></i> Meet Specialists
+                        </a>
+                    </div>
+
+                    <!-- Floating Stats Counter Grid -->
+                    <div class="row g-3">
+                        <div class="col-6 col-md-3">
+                            <div class="stat-card">
+                                <h3>15k+</h3>
+                                <small>Patients Served</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="stat-card">
+                                <h3>45+</h3>
+                                <small>Specialist Doctors</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="stat-card">
+                                <h3>99.4%</h3>
+                                <small>Satisfaction Rate</small>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="stat-card">
+                                <h3>24/7</h3>
+                                <small>Emergency Care</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="p-4 bg-white text-dark rounded-4 shadow-lg border border-light">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-primary-subtle text-primary rounded-circle">
+                                <i class="bi bi-clock-history fs-3"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0 fw-bold">Quick Appointment</h5>
+                                <small class="text-muted">Instant Doctor Allocation</small>
+                            </div>
+                        </div>
+                        <form id="quickAppointmentForm" onsubmit="handleFormSubmit(event)">
+                            <div class="mb-3">
+                                <label class="form-label small fw-semibold">Patient Name</label>
+                                <input type="text" class="form-control form-control-lg" placeholder="e.g. Babatunde Ogunlesi" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-semibold">Phone Number</label>
+                                <input type="tel" class="form-control form-control-lg" placeholder="+234 800 000 0000" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-semibold">Specialty Required</label>
+                                <select class="form-select form-select-lg" required>
+                                    <option value="">Select Specialty</option>
+                                    <option>Cardiology (Heart Care)</option>
+                                    <option>Neurology & Brain Health</option>
+                                    <option>Pediatrics (Child Healthcare)</option>
+                                    <option>Obstetrics & Gynecology</option>
+                                    <option>General Internal Medicine</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100 justify-content-center py-3">
+                                <i class="bi bi-send-fill"></i> Request Call Back
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- About -->
+    <!-- About Section -->
     <section id="about" class="py-5">
-        <div class="container py-5">
-            <div class="row align-items-center">
+        <div class="container py-4">
+            <div class="row align-items-center gy-5">
                 <div class="col-lg-6">
-                    <h2 class="section-title display-5 mb-4">Welcome to Lumina Medicals</h2>
-                    <p class="lead">A modern healthcare facility dedicated to providing exceptional medical services with advanced technology and compassionate care.</p>
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow-lg" alt="Lumina Medicals Center Building">
+                        <div class="position-absolute bottom-0 start-0 bg-white p-3 m-3 rounded-3 shadow-lg d-flex align-items-center gap-3 border border-light" style="max-width: 280px;">
+                            <i class="bi bi-award-fill text-warning fs-1"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Top Rated Center</h6>
+                                <small class="text-muted">Best Private Hospital Lagos 2025</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 text-center">
-                    <img src="https://picsum.photos/id/1015/600/500" class="img-fluid rounded-4 shadow" alt="Hospital">
+                <div class="col-lg-6">
+                    <span class="section-badge mb-2">About Lumina Medicals</span>
+                    <h2 class="section-title mb-4">Nigeria's Standard for Modern Healthcare Excellence</h2>
+                    <p class="lead text-dark fw-medium mb-4">Founded in Lagos, Lumina Medicals delivers world-class medical treatment by blending high-precision medical technology with seasoned Nigerian medical experts.</p>
+                    <p class="text-muted mb-4">Our multi-specialty medical facility is equipped with internationally compliant operating suites, intensive care units, digital radiology suites, and emergency response teams standing by 24 hours a day.</p>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <div class="feature-list-item">
+                                <div class="feature-icon-check"><i class="bi bi-check-lg"></i></div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">Consultant Doctors</h6>
+                                    <small class="text-muted">Fellows of West African College of Surgeons & Physicians.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-list-item">
+                                <div class="feature-icon-check"><i class="bi bi-check-lg"></i></div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">Ultra-Modern Lab</h6>
+                                    <small class="text-muted">Automated PCR, MRI, CT & Pathology diagnostics.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-list-item">
+                                <div class="feature-icon-check"><i class="bi bi-check-lg"></i></div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">Patient-Centered Care</h6>
+                                    <small class="text-muted">Dignified, confidential, and supportive patient recovery environment.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-list-item">
+                                <div class="feature-icon-check"><i class="bi bi-check-lg"></i></div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">24/7 Ambulance</h6>
+                                    <small class="text-muted">Advanced Life Support mobile intensive care units.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#services" class="btn btn-outline-dark rounded-pill px-4 py-2 font-semibold">Explore Our Specialties <i class="bi bi-arrow-right ms-1"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services -->
+    <!-- Medical Services Section -->
     <section id="services" class="py-5 bg-light">
-        <div class="container py-5">
-            <h2 class="section-title text-center mb-5">Our Medical Expertise</h2>
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="section-badge mb-2">Our Clinical Services</span>
+                <h2 class="section-title">Specialized Medical Services</h2>
+                <p class="text-muted">Comprehensive, evidence-based clinical programs managed by senior consultants.</p>
+            </div>
+
             <div class="row g-4">
+                <!-- Cardiology -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow">
-                        <img src="https://picsum.photos/id/201/400/250" class="card-img-top" alt="Cardiology">
-                        <div class="card-body text-center">
-                            <h5>Cardiology</h5>
-                            <p>Advanced heart care and cardiovascular treatments.</p>
+                    <div class="custom-card h-100">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Cardiology Center">
+                            <span class="card-tag">Cardiovascular</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-2">Advanced Cardiology</h5>
+                            <p class="text-muted small mb-4">Complete heart health evaluations, echocardiograms, stress testing, cardiac catheterization, and hypertension management.</p>
+                            <a href="#appointment" data-bs-toggle="modal" data-bs-target="#appointmentModal" class="text-primary fw-bold text-decoration-none">Book Heart Check <i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Neurology -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow">
-                        <img src="https://picsum.photos/id/251/400/250" class="card-img-top" alt="Neurology">
-                        <div class="card-body text-center">
-                            <h5>Neurology</h5>
-                            <p>Expert care for brain and nervous system conditions.</p>
+                    <div class="custom-card h-100">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80" alt="Neurology Center">
+                            <span class="card-tag">Neuroscience</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-2">Neurology & Brain Health</h5>
+                            <p class="text-muted small mb-4">Expert diagnosis and care for stroke recovery, epilepsy, chronic migraines, nerve disorders, and neuro-rehabilitation.</p>
+                            <a href="#appointment" data-bs-toggle="modal" data-bs-target="#appointmentModal" class="text-primary fw-bold text-decoration-none">Consult Neurologist <i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Pediatrics -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow">
-                        <img src="https://picsum.photos/id/180/400/250" class="card-img-top" alt="Pediatrics">
-                        <div class="card-body text-center">
-                            <h5>Pediatrics</h5>
-                            <p>Specialized care for children and families.</p>
+                    <div class="custom-card h-100">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="Pediatric Care">
+                            <span class="card-tag">Child Health</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-2">Pediatrics & Child Wellness</h5>
+                            <p class="text-muted small mb-4">Nurturing pediatric healthcare from newborn screenings, immunizations, growth monitoring, to specialized child illness care.</p>
+                            <a href="#appointment" data-bs-toggle="modal" data-bs-target="#appointmentModal" class="text-primary fw-bold text-decoration-none">Book Pediatrician <i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -95,35 +258,49 @@
         </div>
     </section>
 
-    <!-- Facilities -->
+    <!-- World-Class Facilities Section -->
     <section id="facilities" class="py-5">
-        <div class="container py-5">
-            <h2 class="section-title text-center mb-5">Our World-Class Facilities</h2>
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="section-badge mb-2">Modern Infrastructure</span>
+                <h2 class="section-title">World-Class Medical Facilities</h2>
+                <p class="text-muted">Built with European medical safety standards right here in Lagos, Nigeria.</p>
+            </div>
+
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow">
-                        <img src="https://picsum.photos/id/866/400/280" class="card-img-top" alt="Operation Theatre">
-                        <div class="card-body">
-                            <h5>Advanced Operation Theatres</h5>
-                            <p>State-of-the-art surgical suites with modern equipment.</p>
+                    <div class="custom-card h-100">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=600&q=80" alt="Operation Theatre">
+                            <span class="card-tag">Surgery</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-2">Ultra-Modern Surgical Suites</h5>
+                            <p class="text-muted small">HEPA-filtered laminar airflow operating theatres equipped for minimally invasive laparoscopic and open surgical procedures.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow">
-                        <img src="https://picsum.photos/id/870/400/280" class="card-img-top" alt="ICU">
-                        <div class="card-body">
-                            <h5>Intensive Care Unit (ICU)</h5>
-                            <p>24/7 critical care with advanced monitoring systems.</p>
+                    <div class="custom-card h-100">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80" alt="ICU Ward">
+                            <span class="card-tag">Critical Care</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-2">24/7 Intensive Care Unit (ICU)</h5>
+                            <p class="text-muted small">Multi-parameter bedside vital telemetry, central cardiac monitoring, invasive mechanical ventilators, and dedicated ICU nurses.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow">
-                        <img src="https://picsum.photos/id/1015/400/280" class="card-img-top" alt="Diagnostics">
-                        <div class="card-body">
-                            <h5>Advanced Diagnostics</h5>
-                            <p>MRI, CT Scan, X-Ray, Ultrasound & Laboratory Services.</p>
+                    <div class="custom-card h-100">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="Diagnostics MRI">
+                            <span class="card-tag">Imaging & Lab</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-2">Advanced Digital Diagnostics</h5>
+                            <p class="text-muted small">High-resolution 3T MRI, 128-slice CT Scanner, digital X-Ray, 4D Ultrasound, and automated clinical biochemistry lab.</p>
                         </div>
                     </div>
                 </div>
@@ -131,69 +308,392 @@
         </div>
     </section>
 
-    <!-- Doctors -->
+    <!-- Meet Our Expert Doctors Section -->
     <section id="doctors" class="py-5 bg-light">
-        <div class="container py-5">
-            <h2 class="section-title text-center mb-5">Meet Our Expert Doctors</h2>
-            <div class="row g-4 text-center">
-                <div class="col-lg-3 col-md-6">
-                    <img src="https://picsum.photos/id/64/300/300" class="rounded-circle mb-3 shadow" width="180" alt="">
-                    <h5>Dr. Adekunle Okafor</h5>
-                    <p class="text-primary">Chief Cardiologist</p>
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-4">
+                <span class="section-badge mb-2">Our Medical Board</span>
+                <h2 class="section-title">Meet Our Leading Nigerian Specialists</h2>
+                <p class="text-muted">Renowned consultant physicians and surgeons committed to clinical excellence and personalized patient outcome.</p>
+            </div>
+
+            <!-- Doctor Category Filter Tabs -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-5" id="doctorFilterTabs">
+                <button class="doctor-filter-btn active" onclick="filterDoctors('all', this)">All Specialists</button>
+                <button class="doctor-filter-btn" onclick="filterDoctors('cardiology', this)">Cardiology</button>
+                <button class="doctor-filter-btn" onclick="filterDoctors('neurology', this)">Neurology</button>
+                <button class="doctor-filter-btn" onclick="filterDoctors('pediatrics', this)">Pediatrics</button>
+                <button class="doctor-filter-btn" onclick="filterDoctors('obgyn', this)">Obstetrics & Gynae</button>
+            </div>
+
+            <div class="row g-4" id="doctorsGrid">
+                <!-- Doctor 1: Dr. Adekunle Okafor -->
+                <div class="col-lg-3 col-md-6 doctor-item" data-category="cardiology">
+                    <div class="doctor-card">
+                        <div>
+                            <div class="doctor-img-box">
+                                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" alt="Dr. Adekunle Okafor">
+                                <span class="doctor-status" title="Available Today"></span>
+                            </div>
+                            <h5 class="fw-bold mb-1">Dr. Adekunle Okafor</h5>
+                            <div class="doctor-specialty">Chief Consultant Cardiologist</div>
+                            <div class="doctor-meta">
+                                <div><i class="bi bi-mortarboard-fill text-primary"></i> MBBS, FWACS (Cardiology)</div>
+                                <div><i class="bi bi-clock-history text-primary"></i> 16+ Years Clinical Exp.</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#appointmentModal" onclick="selectDoctor('Dr. Adekunle Okafor (Cardiology)')">
+                            Book Consultation
+                        </button>
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <img src="https://picsum.photos/id/65/300/300" class="rounded-circle mb-3 shadow" width="180" alt="">
-                    <h5>Dr. Chinwe Nwosu</h5>
-                    <p class="text-primary">Senior Neurologist</p>
+
+                <!-- Doctor 2: Dr. Chinwe Nwosu -->
+                <div class="col-lg-3 col-md-6 doctor-item" data-category="neurology">
+                    <div class="doctor-card">
+                        <div>
+                            <div class="doctor-img-box">
+                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" alt="Dr. Chinwe Nwosu">
+                                <span class="doctor-status" title="Available Today"></span>
+                            </div>
+                            <h5 class="fw-bold mb-1">Dr. Chinwe Nwosu</h5>
+                            <div class="doctor-specialty">Senior Consultant Neurologist</div>
+                            <div class="doctor-meta">
+                                <div><i class="bi bi-mortarboard-fill text-primary"></i> MBBS, FMCPath (Neuro)</div>
+                                <div><i class="bi bi-clock-history text-primary"></i> 14+ Years Clinical Exp.</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#appointmentModal" onclick="selectDoctor('Dr. Chinwe Nwosu (Neurology)')">
+                            Book Consultation
+                        </button>
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <img src="https://picsum.photos/id/66/300/300" class="rounded-circle mb-3 shadow" width="180" alt="">
-                    <h5>Dr. Emeka Okoro</h5>
-                    <p class="text-primary">Pediatrician</p>
+
+                <!-- Doctor 3: Dr. Emeka Okoro -->
+                <div class="col-lg-3 col-md-6 doctor-item" data-category="pediatrics">
+                    <div class="doctor-card">
+                        <div>
+                            <div class="doctor-img-box">
+                                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80" alt="Dr. Emeka Okoro">
+                                <span class="doctor-status" title="Available Today"></span>
+                            </div>
+                            <h5 class="fw-bold mb-1">Dr. Emeka Okoro</h5>
+                            <div class="doctor-specialty">Head of Pediatric Medicine</div>
+                            <div class="doctor-meta">
+                                <div><i class="bi bi-mortarboard-fill text-primary"></i> MBBS, FMCPaed</div>
+                                <div><i class="bi bi-clock-history text-primary"></i> 12+ Years Clinical Exp.</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#appointmentModal" onclick="selectDoctor('Dr. Emeka Okoro (Pediatrics)')">
+                            Book Consultation
+                        </button>
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <img src="https://picsum.photos/id/67/300/300" class="rounded-circle mb-3 shadow" width="180" alt="">
-                    <h5>Dr. Fatima Adebayo</h5>
-                    <p class="text-primary">Obstetrics & Gynecology</p>
+
+                <!-- Doctor 4: Dr. Fatima Adebayo -->
+                <div class="col-lg-3 col-md-6 doctor-item" data-category="obgyn">
+                    <div class="doctor-card">
+                        <div>
+                            <div class="doctor-img-box">
+                                <img src="assets/images/doctor_fatima.jpg" alt="Dr. Fatima Adebayo">
+                                <span class="doctor-status" title="Available Today"></span>
+                            </div>
+                            <h5 class="fw-bold mb-1">Dr. Fatima Adebayo</h5>
+                            <div class="doctor-specialty">Consultant OB-GYN</div>
+                            <div class="doctor-meta">
+                                <div><i class="bi bi-mortarboard-fill text-primary"></i> MBBS, FWACS (OB-GYN)</div>
+                                <div><i class="bi bi-clock-history text-primary"></i> 15+ Years Clinical Exp.</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#appointmentModal" onclick="selectDoctor('Dr. Fatima Adebayo (OB-GYN)')">
+                            Book Consultation
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Appointment -->
-    <section id="appointment" class="py-5 bg-primary text-white text-center">
-        <div class="container py-5">
-            <h2 class="display-5 fw-bold mb-4">Book Your Appointment Today</h2>
-            <p class="lead mb-5">Experience world-class healthcare with our specialists.</p>
-            <a href="#" class="btn btn-light btn-lg px-5 py-3">Schedule Now</a>
+    <!-- Patient Reviews & Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="section-badge mb-2">Patient Feedback</span>
+                <h2 class="section-title">What Our Patients Say</h2>
+                <p class="text-muted">Read real reviews from patients treated at Lumina Medicals.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="rating-stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="fst-italic text-dark mb-4">"The surgical team led by Dr. Adekunle Okafor was phenomenal. From diagnosis to recovery, the attention to detail and care felt like a 5-star experience."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-primary text-white fw-bold rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                CO
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Chief Chinedu O.</h6>
+                                <small class="text-muted">Victoria Island, Lagos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="rating-stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="fst-italic text-dark mb-4">"Dr. Fatima Adebayo delivered my twin baby girls safely. The labor ward and pediatric ICU staff were incredibly compassionate and professional."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-success text-white fw-bold rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                AA
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Mrs. Aisha Bello</h6>
+                                <small class="text-muted">Ikoyi, Lagos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="rating-stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="fst-italic text-dark mb-4">"Their 24/7 emergency team responded within minutes when my uncle had a neurological emergency. Lumina Medicals saved his life."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-info text-white fw-bold rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                OE
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Engr. Olumide E.</h6>
+                                <small class="text-muted">Lekki Phase 1, Lagos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Callout Banner -->
+    <section class="container py-4">
+        <div class="emergency-banner">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="emergency-pulse"></span>
+                        <span class="text-danger fw-bold text-uppercase tracking-wider">24/7 Rapid Emergency Response</span>
+                    </div>
+                    <h2 class="text-white fw-extrabold display-6 mb-3">Facing a Medical Emergency in Lagos?</h2>
+                    <p class="text-white-50 mb-0 lead fs-6">Our mobile intensive care ambulances and trauma doctors are ready on dispatch 24 hours a day, 7 days a week.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="tel:+2348012345678" class="btn btn-danger btn-lg px-4 py-3 rounded-pill fw-bold shadow-lg">
+                        <i class="bi bi-telephone-outbound-fill me-2"></i> Call +234 801 234 5678
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-dark text-white py-5">
+    <footer id="contact" class="bg-dark text-white pt-5 pb-4 mt-5">
         <div class="container">
-            <div class="row">
+            <div class="row gy-4 mb-5">
                 <div class="col-lg-4">
-                    <h4 class="fw-bold"><span style="color: var(--primary);">LUMINA</span> MEDICALS</h4>
-                    <p>Compassionate Care • Advanced Medicine</p>
+                    <a class="navbar-brand text-white mb-3" href="#">
+                        <img src="assets/images/logo.jpg" alt="Lumina Medicals Logo" width="42" height="42" class="rounded-3 shadow-sm me-2">
+                        <span style="color: var(--primary);">LUMINA</span> MEDICALS
+                    </a>
+                    <p class="text-white-50 mt-3 small">Lumina Medicals is a leading multi-specialty tertiary hospital located in Lekki, Lagos. We provide comprehensive outpatient, inpatient, diagnostic, and emergency medical services.</p>
+                    <div class="d-flex gap-3 mt-3 fs-5 text-info">
+                        <a href="#" class="text-info"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-info"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="text-info"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-info"><i class="bi bi-linkedin"></i></a>
+                    </div>
                 </div>
-                <div class="col-lg-4">
-                    <h5>Contact Information</h5>
-                    <p><i class="fas fa-phone"></i> +234 801 234 5678</p>
-                    <p><i class="fas fa-envelope"></i> info@lumina-medicals.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Lekki, Lagos, Nigeria</p>
+
+                <div class="col-lg-2 col-6">
+                    <h6 class="fw-bold mb-3 text-white">Quick Links</h6>
+                    <ul class="list-unstyled text-white-50 small d-grid gap-2">
+                        <li><a href="#about" class="text-white-50 text-decoration-none">About Hospital</a></li>
+                        <li><a href="#services" class="text-white-50 text-decoration-none">Medical Services</a></li>
+                        <li><a href="#facilities" class="text-white-50 text-decoration-none">Facilities</a></li>
+                        <li><a href="#doctors" class="text-white-50 text-decoration-none">Our Specialists</a></li>
+                        <li><a href="#testimonials" class="text-white-50 text-decoration-none">Patient Reviews</a></li>
+                    </ul>
                 </div>
-                <div class="col-lg-4">
-                    <h5>Emergency</h5>
-                    <p class="fs-4 fw-bold text-danger">+234 801 234 5678</p>
-                    <p>Available 24/7</p>
+
+                <div class="col-lg-3 col-6">
+                    <h6 class="fw-bold mb-3 text-white">Clinical Departments</h6>
+                    <ul class="list-unstyled text-white-50 small d-grid gap-2">
+                        <li>Cardiology & Heart Care</li>
+                        <li>Neurology & Neurosurgery</li>
+                        <li>Pediatrics & Neonatology</li>
+                        <li>Obstetrics & Gynecology</li>
+                        <li>Diagnostic Radiology & MRI</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Contact & Location</h6>
+                    <p class="text-white-50 small mb-2"><i class="bi bi-geo-alt-fill text-info me-2"></i> Admiralty Way, Lekki Phase 1, Lagos, Nigeria</p>
+                    <p class="text-white-50 small mb-2"><i class="bi bi-telephone-fill text-info me-2"></i> +234 801 234 5678</p>
+                    <p class="text-white-50 small mb-2"><i class="bi bi-envelope-fill text-info me-2"></i> info@lumina-medicals.com</p>
+                    <p class="text-white-50 small"><i class="bi bi-clock-fill text-info me-2"></i> Open 24 Hours / 7 Days</p>
                 </div>
             </div>
-            <hr>
-            <p class="text-center mb-0">&copy; 2026 Lumina Medicals. All Rights Reserved.</p>
+
+            <hr class="border-secondary">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-white-50 pt-2">
+                <p class="mb-2 mb-md-0">&copy; 2026 Lumina Medicals Nigeria. All Rights Reserved.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white-50 text-decoration-none">Privacy Policy</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Terms of Service</a>
+                    <a href="#" class="text-white-50 text-decoration-none">MDCN Licensing</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Interactive Appointment Booking Modal -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-header-title fw-bold mb-0 text-white" id="appointmentModalLabel">
+                        <i class="bi bi-calendar-event-fill me-2"></i> Book Appointment with Specialist
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="fullAppointmentForm" onsubmit="handleModalSubmit(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Patient Full Name *</label>
+                                <input type="text" class="form-control" placeholder="e.g. Olusegun Caleb" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Phone Number *</label>
+                                <input type="tel" class="form-control" placeholder="+234 801 234 5678" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Email Address</label>
+                                <input type="email" class="form-control" placeholder="patient@example.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Preferred Doctor / Department</label>
+                                <select class="form-select" id="modalDoctorSelect" required>
+                                    <option value="">Choose Doctor / Department</option>
+                                    <option>Dr. Adekunle Okafor (Cardiology)</option>
+                                    <option>Dr. Chinwe Nwosu (Neurology)</option>
+                                    <option>Dr. Emeka Okoro (Pediatrics)</option>
+                                    <option>Dr. Fatima Adebayo (OB-GYN)</option>
+                                    <option>General OPD Consultation</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Preferred Date *</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Preferred Time Slot *</label>
+                                <select class="form-select" required>
+                                    <option value="">Select Time</option>
+                                    <option>Morning (09:00 AM - 12:00 PM)</option>
+                                    <option>Afternoon (12:00 PM - 04:00 PM)</option>
+                                    <option>Evening (04:00 PM - 07:00 PM)</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Brief Medical Reason / Symptoms</label>
+                                <textarea class="form-control" rows="3" placeholder="Describe briefly why you need to see a doctor..."></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-end">
+                            <button type="button" class="btn btn-light me-2 fw-semibold" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary-custom px-4">Confirm Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+        <div id="bookingToast" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body fs-6">
+                    <i class="bi bi-check-circle-fill me-2 fs-5"></i> <span id="toastMessage">Your appointment request has been submitted successfully! We will call you shortly.</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Script -->
+    <script>
+        function filterDoctors(category, btnElement) {
+            // Update active class on filter buttons
+            const buttons = document.querySelectorAll('#doctorFilterTabs .doctor-filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Filter doctor cards
+            const doctorItems = document.querySelectorAll('.doctor-item');
+            doctorItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function selectDoctor(doctorName) {
+            const selectElem = document.getElementById('modalDoctorSelect');
+            if (selectElem) {
+                for (let i = 0; i < selectElem.options.length; i++) {
+                    if (selectElem.options[i].text.includes(doctorName) || selectElem.options[i].value.includes(doctorName)) {
+                        selectElem.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const toastEl = document.getElementById('bookingToast');
+            document.getElementById('toastMessage').innerText = "Thank you! Our Lumina Medical team will contact you within 15 minutes.";
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+            event.target.reset();
+        }
+
+        function handleModalSubmit(event) {
+            event.preventDefault();
+            const modalEl = document.getElementById('appointmentModal');
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) modal.hide();
+
+            const toastEl = document.getElementById('bookingToast');
+            document.getElementById('toastMessage').innerText = "Appointment booked successfully! A confirmation SMS and Email have been sent.";
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+            event.target.reset();
+        }
+    </script>
 </body>
 </html>
